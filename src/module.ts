@@ -22,7 +22,7 @@ export class AppModule {
             secure: false
         }))
         app.use(authRouters)
-        app.use(errorHandler)
+        app.use(errorHandler as any)
         Object.setPrototypeOf(this, AppModule.prototype);
     }
     async start(){

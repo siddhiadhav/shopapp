@@ -1,5 +1,5 @@
 //create auth routers
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router, Request, Response, NextFunction, RequestHandler } from 'express';
 import { authService } from './auth.service';
 import { currentUser, BadRequestError } from '@shopverse/common';
 const router= Router();
@@ -19,7 +19,11 @@ router.post('/signin', async(req: Request, res: Response, next: NextFunction)=>{
     res.status(200).send(true);
 })
 
-router.get('/current_user',currentUser(process.env.JWT_KEY!),async (req: Request, res: Response)=>{
-    res.status(200).send(req.currentUser)
-})
+router.get('/current_user', currentUser, async (req: Request, res: Response) => {
+    res.status(200).send(req.currentUser);
+});
+
+
+
+
 export { router as authRouters}
